@@ -61,5 +61,9 @@ export async function POST(request: Request) {
     userAgent: request.headers.get("user-agent"),
   });
 
+  if (process.env.NODE_ENV === "development") {
+    console.info("[locations] saved", record.id, record.latitude, record.longitude);
+  }
+
   return NextResponse.json({ record }, { status: 201 });
 }

@@ -68,8 +68,10 @@ export function LocationMapList({ initialRecords }: Props) {
   if (records.length === 0) {
     return (
       <div className="space-y-4">
-        <p className="rounded-xl border border-dashed border-white/15 p-8 text-center text-sm text-neutral-400">
-          暂无记录。请用手机打开首页并允许定位权限。
+        <p className="rounded-xl border border-dashed border-white/15 p-8 text-center text-sm leading-relaxed text-neutral-400">
+          暂无记录。请用手机打开首页，点击底部
+          <span className="text-rose-200/90">「轻触此处记录位置」</span>
+          ，并在浏览器中允许定位。
         </p>
         <button
           type="button"

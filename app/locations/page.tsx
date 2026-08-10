@@ -19,7 +19,7 @@ export default async function LocationsPage() {
           <div>
             <h1 className="text-lg font-semibold text-rose-100">访客位置</h1>
             <p className="mt-1 text-xs text-neutral-400">
-              用户在首页授权后会记录一次（同一会话不重复上报）
+              首页点击底部按钮并允许定位后记录（同一会话成功一次后不再提示）
             </p>
           </div>
           <Link
