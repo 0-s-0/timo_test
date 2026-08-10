@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useMemo } from "react";
 
 export type LoveCopy = {
@@ -10,6 +11,11 @@ export type LoveCopy = {
   /** 计算用，ISO 日期 YYYY-MM-DD（本地日历） */
   meetAt: string;
   meetPlace: string;
+  /** public 目录下路径，如 /小青.jpg */
+  photo: string;
+  photoAlt: string;
+  /** 称呼，如 最爱的小青 */
+  herName: string;
   paragraphs: string[];
   signature: string;
   date: string;
@@ -272,7 +278,7 @@ export function LoveScene({ copy }: { copy: LoveCopy }) {
       <div className="pointer-events-none absolute left-1/2 top-1/3 z-[2] h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-rose-500/20 blur-[80px] animate-glow-breathe" />
       <div className="pointer-events-none absolute bottom-1/4 right-0 z-[2] h-48 w-48 translate-x-1/4 rounded-full bg-violet-500/25 blur-[70px] animate-glow-breathe [animation-delay:-2s]" />
 
-      <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-max(1.5rem,env(safe-area-inset-top))-max(1.5rem,env(safe-area-inset-bottom)))] max-w-md flex-col items-center justify-center py-6">
+      <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-max(1.5rem,env(safe-area-inset-top))-max(1.5rem,env(safe-area-inset-bottom)))] max-w-md flex-col items-center justify-center">
         <div className="love-card-enter w-full">
           <div className="relative overflow-hidden rounded-[1.75rem] p-[2px]">
             <div
@@ -292,21 +298,52 @@ export function LoveScene({ copy }: { copy: LoveCopy }) {
                 {copy.tag}
               </p>
 
-              <div className="relative mt-5 flex justify-center">
-                <span
-                  className="absolute inline-flex h-16 w-16 animate-heartbeat rounded-full bg-rose-400/30 blur-md"
-                  aria-hidden
-                />
-                <span
-                  className="absolute inline-flex h-10 w-10 animate-heartbeat rounded-full bg-pink-300/40 blur-sm [animation-delay:0.15s]"
-                  aria-hidden
-                />
-                <HeartIcon className="relative h-10 w-10 text-rose-300 drop-shadow-[0_0_12px_rgba(251,113,133,0.8)] animate-heartbeat" />
+              <div
+                className="love-fade-up relative mx-auto mt-5 flex justify-center"
+                style={{ animationDelay: "320ms" }}
+              >
+                <div className="relative h-[8.75rem] w-[8.75rem]">
+                  <span
+                    className="absolute -inset-3 rounded-full bg-rose-500/30 blur-2xl animate-glow-breathe"
+                    aria-hidden
+                  />
+                  <div className="absolute inset-0 overflow-hidden rounded-full p-[2px]">
+                    <div
+                      className="absolute inset-[-50%] animate-border-spin bg-[conic-gradient(from_0deg,#fb7185,#f9a8d4,#e879f9,#fb7185)] opacity-90"
+                      aria-hidden
+                    />
+                  </div>
+                  <div className="relative h-full w-full overflow-hidden rounded-full border-2 border-white/35 bg-white/10 shadow-[0_0_40px_rgba(244,114,182,0.45)] ring-2 ring-rose-200/20">
+                    <Image
+                      src={copy.photo}
+                      alt={copy.photoAlt}
+                      width={280}
+                      height={280}
+                      sizes="140px"
+                      className="h-full w-full object-cover object-center"
+                      priority
+                    />
+                    <div
+                      className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-t from-rose-950/35 via-transparent to-white/10"
+                      aria-hidden
+                    />
+                  </div>
+                  <span className="absolute -bottom-0.5 -right-0.5 flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-rose-500/90 shadow-lg backdrop-blur-sm">
+                    <HeartIcon className="h-4 w-4 text-white drop-shadow-sm" />
+                  </span>
+                </div>
               </div>
 
+              <p
+                className="love-fade-up mt-4 text-center text-lg font-semibold tracking-[0.12em] text-rose-100 drop-shadow-[0_0_16px_rgba(251,113,133,0.35)]"
+                style={{ animationDelay: "400ms" }}
+              >
+                {copy.herName}
+              </p>
+
               <h1
-                className="love-fade-up mt-6 text-center text-2xl font-bold tracking-wide text-rose-50 drop-shadow-[0_0_24px_rgba(251,113,133,0.45)]"
-                style={{ animationDelay: "450ms" }}
+                className="love-fade-up mt-4 text-center text-2xl font-bold tracking-wide text-rose-50 drop-shadow-[0_0_24px_rgba(251,113,133,0.45)]"
+                style={{ animationDelay: "480ms" }}
               >
                 {copy.title}
               </h1>
