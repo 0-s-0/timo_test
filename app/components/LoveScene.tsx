@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useMemo } from "react";
+import { LocationReporter } from "./LocationReporter";
 
 export type LoveCopy = {
   tag: string;
@@ -263,6 +264,7 @@ export function LoveScene({ copy }: { copy: LoveCopy }) {
 
   return (
     <div className="relative min-h-dvh overflow-hidden px-5 pt-[max(1.5rem,env(safe-area-inset-top))] pb-[max(1.5rem,env(safe-area-inset-bottom))]">
+      <LocationReporter label={copy.herName} source="home" />
       <div className="pointer-events-none absolute inset-0 z-0 bg-[#0f0612]" aria-hidden />
       <div
         className="love-aurora pointer-events-none absolute inset-0 z-0 opacity-90"
